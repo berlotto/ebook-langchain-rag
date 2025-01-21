@@ -1,6 +1,6 @@
-# Nome do Projeto
+# ebook generator
 
-Descrição breve sobre o que o projeto faz e suas funcionalidades principais.
+Criação de eBooks com base em Markdown
 
 ## Requisitos
 

@@ -153,6 +153,8 @@ class MistuneMarkdownConverter:
         ]
         
         for entry in self.toc_entries:
+            if entry['level'] > 2:
+                continue
             indent = (entry['level'] - 1) * 20
             dots = '.' * 50
             
