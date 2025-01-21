@@ -4,7 +4,7 @@
 
 Parabéns! Você chegou ao capítulo final deste livro, e não poderia haver maneira melhor de celebrar sua jornada do que construindo algo realmente incrível. Depois de mergulhar fundo em conceitos, técnicas e ferramentas ao longo dos últimos 19 capítulos, chegou a hora de juntar todo esse conhecimento em um projeto extraordinário: um sistema RAG que evolui e aprende em tempo real!
 
-O código completo deste projeto está disponível em: [github.com/seu-usuario/dynamic-rag](https://github.com/seu-usuario/dynamic-rag)
+O código completo deste projeto está disponível em: [berlotto/capitulo20-source-code](https://github.com/berlotto/capitulo20-source-code)
 
 ## Um Sistema Que Nunca Para de Aprender!
 

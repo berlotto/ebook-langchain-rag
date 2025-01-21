@@ -11,16 +11,27 @@ Criação de eBooks com base em Markdown
 
 1. Instale o `uv` seguindo as instruções em [uv](https://docs.astral.sh/uv/getting-started/installation/).
 2. Clone o repositório:
+    
     ```sh
     git clone https://github.com/seu-usuario/seu-repositorio.git
     ```
+
 3. Navegue até o diretório do projeto:
+    
     ```sh
     cd seu-repositorio
     ```
+
 4. Este comando cria o ambiente virtual e instala as dependencias do projeto
+    
     ```sh
     uv sync
+    ```
+
+# Para gerar
+
+    ```sh
+    uv run python main.py
     ```
 
 ## Uso
