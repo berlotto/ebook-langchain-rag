@@ -53,7 +53,7 @@ client = Client()
 
 # Configurar callback
 callback = LangSmithCallback(
-    project_name="meu_projeto_pecuaria",
+    project_name="meu_projeto_reviews",
     client=client
 )
 ```
@@ -71,12 +71,12 @@ chain = LLMChain(
     llm=llm,
     prompt=prompt,
     callbacks=[callback],
-    tags=["producao", "analise_nutricional"]
+    tags=["producao", "analise_sentimentos"]
 )
 
 # Executar com tracejamento
 result = chain.run(
-    input="Calcule a necessidade de proteína para 100 cabeças de gado Nelore"
+    input="Analise o sentimento das últimas 100 avaliações do produto"
 )
 ```
 
@@ -100,14 +100,14 @@ from langsmith import DatasetCreator
 # Criar dataset
 creator = DatasetCreator(
     client=client,
-    name="testes_nutricao",
-    description="Casos de teste para cálculos nutricionais"
+    name="testes_reviews",
+    description="Casos de teste para análise de reviews"
 )
 
 # Adicionar exemplos
 creator.add_example(
-    inputs={"query": "Calcule ração para 100 cabeças"},
-    outputs={"resultado_esperado": "1000kg de ração/dia"}
+    inputs={"query": "Classifique o sentimento do review"},
+    outputs={"resultado_esperado": "Sentimento positivo, score 0.8"}
 )
 ```
 
@@ -154,9 +154,9 @@ graph LR
 Para análises mais profundas, podemos criar métricas customizadas:
 
 ```python
-def avaliar_precisao_nutricional(resultado, esperado):
+def avaliar_precisao_sentimento(resultado, esperado):
     """
-    Avalia a precisão dos cálculos nutricionais
+    Avalia a precisão da análise de sentimento
     """
     from difflib import SequenceMatcher
     
@@ -168,8 +168,8 @@ def avaliar_precisao_nutricional(resultado, esperado):
 
 # Registrar avaliador customizado
 client.register_evaluator(
-    "avaliador_nutricional",
-    avaliar_precisao_nutricional
+    "avaliador_sentimento",
+    avaliar_precisao_sentimento
 )
 ```
 
@@ -185,7 +185,7 @@ from langsmith.analytics import analyze_runs
 
 analise = analyze_runs(
     client=client,
-    project_name="meu_projeto_pecuaria",
+    project_name="meu_projeto_reviews",
     start_date="2024-01-01"
 )
 
@@ -202,11 +202,11 @@ Para casos complexos, podemos usar o modo de debug detalhado:
 os.environ["LANGCHAIN_TRACING_V2_DEBUG"] = "true"
 
 # Executar com log detalhado
-with callback.trace("debug_nutricional") as trace:
-    result = chain.run(input="Análise completa de dieta")
+with callback.trace("debug_reviews") as trace:
+    result = chain.run(input="Análise completa de satisfação")
     trace.add_metadata({
         "complexidade": "alta",
-        "tipo_analise": "dieta_completa"
+        "tipo_analise": "sentimento_detalhado"
     })
 ```
 

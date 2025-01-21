@@ -145,17 +145,17 @@ Ao planejar sua primeira aplicação com LangChain, considere começar com algo 
 
 No próximo capítulo, vamos mergulhar nos blocos fundamentais do LangChain: LLM Wrappers, Prompt Templates e Chains. Você aprenderá como estes componentes trabalham juntos para criar aplicações poderosas e flexíveis.
 
-## Recursos Adicionais
+Recursos Adicionais
 
-Para se aprofundar ainda mais no LangChain, recomendo explorar:
-
-A documentação oficial em [python.langchain.com](python.langchain.com)
-
-O repositório de exemplos no GitHub
-
-A comunidade ativa no Discord do LangChain
-
-Os tutoriais em vídeo disponíveis no canal oficial do YouTube
-
+Documentação Oficial do LangChain
+: https://python.langchain.com/docs/get_started/introduction.html
+Guia de Componentes LangChain
+: https://python.langchain.com/docs/modules/model_io/models/
+Tutorial de Chat Models
+: https://python.langchain.com/docs/modules/model_io/models/chat/
+Fórum da Comunidade
+: https://github.com/langchain-ai/langchain/discussions
+Exemplos Práticos
+: https://python.langchain.com/docs/guides/deployments/example_implementations
 
 Lembre-se: o LangChain está em constante evolução, com novas funcionalidades sendo adicionadas regularmente. Mantenha-se atualizado acompanhando o blog oficial e as discussões da comunidade.

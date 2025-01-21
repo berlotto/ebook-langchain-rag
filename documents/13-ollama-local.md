@@ -125,12 +125,12 @@ PARAMETER top_k 40
 
 # Sistema de prompt personalizado
 SYSTEM """
-Você é um assistente especializado em pecuária de corte.
+Você é um assistente especializado em investimento de ações.
 Suas respostas devem ser técnicas e precisas, focando em:
-- Manejo sanitário
-- Nutrição animal
-- Gestão de pastagens
-- Melhoramento genético
+- Ganhos de dividendos
+- Evitar prejuíjos
+- Análise de mercado
+- Análise fundamentalista
 """
 ```
 
@@ -144,8 +144,8 @@ def preparar_dados_treinamento():
     Prepara dados para fine-tuning
     """
     dados = [
-        {"prompt": "Calcule a lotação", "completion": "Para calcular..."},
-        {"prompt": "Protocolo sanitário", "completion": "O protocolo..."}
+        {"prompt": "Melhor ação para comprar", "completion": "A melhor ação..."},
+        {"prompt": "Análise fundamentalista", "completion": "A análise é feita..."}
     ]
     
     with open("dados_treino.jsonl", "w") as f:

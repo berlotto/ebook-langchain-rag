@@ -6,7 +6,7 @@ Se você já se perguntou como computadores conseguem "entender" texto ou como �
 
 ## O que são Embeddings?
 
-Imagine que você precisa explicar para um computador o que significa a palavra "boi". Como fazemos isso? Os embeddings são como um mapa que posiciona cada palavra ou texto em um espaço multidimensional, onde textos com significados semelhantes ficam próximos uns dos outros.
+Imagine que você precisa explicar para um computador o que significa a palavra "carro". Como fazemos isso? Os embeddings são como um mapa que posiciona cada palavra ou texto em um espaço multidimensional, onde textos com significados semelhantes ficam próximos uns dos outros.
 
 ```mermaid
 graph TD
@@ -19,9 +19,9 @@ graph TD
 ```
 
 Por exemplo, em um espaço vetorial bem treinado:
-- "boi" e "vaca" estariam próximos
-- "pastagem" e "capim" também estariam próximos
-- mas "boi" e "computador" estariam distantes
+- "carro" e "automóvel" estariam próximos
+- "estrada" e "rodovia" também estariam próximos
+- mas "carro" e "elefante" estariam distantes
 
 ## Modelos de Embedding
 
@@ -35,7 +35,7 @@ from langchain.embeddings import OpenAIEmbeddings
 embeddings = OpenAIEmbeddings()
 
 # Gerando embedding para um texto
-texto = "O boi Nelore é adaptado ao clima tropical"
+texto = "O Tesla Model S é um carro elétrico de luxo"
 embedding = embeddings.embed_query(texto)
 
 # O resultado é um vetor de 1536 dimensões
@@ -52,7 +52,7 @@ model_name = "sentence-transformers/multilingual-MiniLM-L12-v2"
 embeddings = HuggingFaceEmbeddings(model_name=model_name)
 
 # Gerando embeddings em português
-texto_pt = "Manejo sanitário do rebanho"
+texto_pt = "Manutenção preventiva do veículo"
 embedding_pt = embeddings.embed_query(texto_pt)
 ```
 

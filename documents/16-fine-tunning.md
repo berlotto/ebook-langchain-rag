@@ -2,12 +2,12 @@
 
 ## Introdução ao Fine-tuning
 
-No capítulo anterior, exploramos os fundamentos do HuggingFace e como usar modelos pré-treinados. Agora, vamos dar um passo além: adaptar esses modelos para tarefas específicas através do fine-tuning. Imagine que você tem um modelo que entende português, mas precisa que ele seja especialista em terminologia do agronegócio - é exatamente isso que o fine-tuning permite.
+No capítulo anterior, exploramos os fundamentos do HuggingFace e como usar modelos pré-treinados. Agora, vamos dar um passo além: adaptar esses modelos para tarefas específicas através do fine-tuning. Imagine que você tem um modelo que entende português, mas precisa que ele seja especialista em análise de reviews de produtos eletrônicos - é exatamente isso que o fine-tuning permite.
 
 ## Por que Fazer Fine-tuning?
 
 Existem várias razões para fazer fine-tuning de um modelo:
-- Adaptar para um domínio específico (ex: vocabulário técnico do agronegócio)
+- Adaptar para um domínio específico (ex: vocabulário técnico de e-commerce)
 - Melhorar performance em tarefas específicas
 - Reduzir "alucinações" do modelo em seu contexto
 - Personalizar o comportamento para suas necessidades
@@ -86,10 +86,10 @@ preparador = PreparadorDados("neuralmind/bert-base-portuguese-cased")
 # Seus dados de treinamento
 dados_treino = pd.DataFrame({
     "texto": [
-        "O gado Nelore apresenta excelente conversão alimentar",
-        "A vacinação contra aftosa é obrigatória"
+        "O smartphone tem excelente duração de bateria",
+        "A tela do notebook apresentou defeito após 3 meses"
     ],
-    "rotulo": [1, 1]  # Exemplo de classificação binária
+    "rotulo": [1, 0]  # 1 para review positivo, 0 para negativo
 })
 
 dataset_preparado = preparador.preparar_dataset(dados_treino)

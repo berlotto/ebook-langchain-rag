@@ -6,7 +6,7 @@ No capítulo anterior, aprendemos sobre embeddings e sua importância fundamenta
 
 ## Por que Bancos de Dados Vetoriais?
 
-Imagine que você está construindo um sistema para processar milhares de documentos técnicos sobre manejo de gado. Um banco de dados tradicional como PostgreSQL até poderia armazenar os vetores, mas realizar buscas por similaridade seria extremamente ineficiente. Bancos de dados vetoriais são especializados neste tipo de operação.
+Imagine que você está construindo um sistema para processar milhares de artigos científicos. Um banco de dados tradicional como PostgreSQL até poderia armazenar os vetores, mas realizar buscas por similaridade seria extremamente ineficiente. Bancos de dados vetoriais são especializados neste tipo de operação.
 
 ## Comparação de Soluções
 
@@ -145,13 +145,13 @@ def configurar_indices(colecao: str, client: QdrantClient):
     """Configura índices otimizados para diferentes tipos de consulta"""
     client.create_payload_index(
         collection_name=colecao,
-        field_name="categoria",
+        field_name="area_pesquisa",
         field_schema=models.PayloadSchemaType.KEYWORD
     )
     
     client.create_payload_index(
         collection_name=colecao,
-        field_name="data_criacao",
+        field_name="data_publicacao",
         field_schema=models.PayloadSchemaType.DATETIME
     )
 ```

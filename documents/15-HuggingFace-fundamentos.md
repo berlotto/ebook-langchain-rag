@@ -67,7 +67,7 @@ classificador = pipeline(
 )
 
 # Exemplo de uso
-texto = "Este projeto de gestão pecuária está revolucionando nossa fazenda!"
+texto = "Este código está muito bom conforme os ensinamentos do Clean Code"
 resultado = classificador(texto)
 print(f"Sentimento: {resultado[0]['label']}")
 print(f"Confiança: {resultado[0]['score']:.2%}")

@@ -6,11 +6,11 @@ O LangGraph é uma extensão poderosa do ecossistema LangChain que nos permite m
 
 ## Por que usar Grafos de Conhecimento?
 
-No contexto do agronegócio, por exemplo, podemos ter um cenário onde precisamos representar:
-- Relações entre diferentes raças de gado
-- Ciclos de produção e suas etapas
-- Cadeia de fornecedores e compradores
-- Histórico sanitário do rebanho
+No contexto de uma biblioteca digital, por exemplo, podemos ter um cenário onde precisamos representar:
+- Relações entre diferentes gêneros literários
+- Sequência de capítulos e suas dependências
+- Rede de autores e colaboradores
+- Histórico de empréstimos e devoluções
 
 Um grafo permite representar essas relações de forma natural e eficiente.
 
@@ -48,16 +48,16 @@ graph = NetworkxEntityGraph()
 # Criando nós e relações
 nodes_and_rels = {
     "nodes": [
-        {"id": "boi_nelore", "type": "Raça", "properties": {"nome": "Nelore"}},
-        {"id": "fase_cria", "type": "Fase", "properties": {"nome": "Cria"}},
-        {"id": "peso_desmama", "type": "Indicador", "properties": {"valor": 180}}
+        {"id": "livro_hobbit", "type": "Livro", "properties": {"titulo": "O Hobbit"}},
+        {"id": "fase_aventura", "type": "Genero", "properties": {"nome": "Aventura"}},
+        {"id": "num_paginas", "type": "Indicador", "properties": {"valor": 336}}
     ],
     "relationships": [
         {
-            "source": "boi_nelore",
-            "target": "fase_cria",
-            "type": "PARTICIPA_DE",
-            "properties": {"período": "6-8 meses"}
+            "source": "livro_hobbit",
+            "target": "fase_aventura",
+            "type": "PERTENCE_A",
+            "properties": {"subgenero": "Fantasia"}
         }
     ]
 }
@@ -76,9 +76,9 @@ from langchain.graphs.query import GraphCypherQuery
 # Definindo uma consulta
 query = GraphCypherQuery(
     query="""
-    MATCH (r:Raça)-[p:PARTICIPA_DE]->(f:Fase)
-    WHERE r.nome = 'Nelore'
-    RETURN r, p, f
+    MATCH (l:Livro)-[p:PERTENCE_A]->(g:Genero)
+    WHERE l.titulo = 'O Hobbit'
+    RETURN l, p, g
     """
 )
 
@@ -102,8 +102,8 @@ chain = GraphOperationChain.from_llm(
 
 # Extraindo relações de um texto
 text = """
-O Nelore é uma raça com excelente desempenho na fase de cria,
-atingindo normalmente peso de desmama entre 170 e 190 kg.
+O Hobbit é um livro do gênero aventura e fantasia,
+contendo aproximadamente 336 páginas em sua primeira edição.
 """
 
 result = chain.run(text)
@@ -128,7 +128,7 @@ def visualize_graph(graph):
         font_size=10,
         font_weight='bold'
     )
-    plt.title("Grafo de Conhecimento do Agronegócio")
+    plt.title("Grafo de Conhecimento da Biblioteca")
     plt.show()
 ```
 
@@ -136,14 +136,14 @@ def visualize_graph(graph):
 
 ### Modelagem de Domínio
 
-Vamos ver como modelar um domínio específico do agronegócio:
+Vamos ver como modelar um domínio específico de uma biblioteca:
 
 ```mermaid
 graph TD
-    A[Propriedade] --> B[Lote]
-    B --> C[Animal]
-    C --> D[Pesagem]
-    C --> E[Sanidade]
+    A[Biblioteca] --> B[Seção]
+    B --> C[Livro]
+    C --> D[Empréstimo]
+    C --> E[Avaliação]
     
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style B fill:#bbf,stroke:#333,stroke-width:2px
@@ -155,13 +155,13 @@ Implementação correspondente:
 ```python
 domain_model = {
     "nodes": [
-        {"id": "propriedade_1", "type": "Propriedade", "properties": {"nome": "Fazenda São João"}},
-        {"id": "lote_1", "type": "Lote", "properties": {"identificador": "L001"}},
-        {"id": "animal_1", "type": "Animal", "properties": {"brinco": "A123"}}
+        {"id": "biblioteca_1", "type": "Biblioteca", "properties": {"nome": "Biblioteca Central"}},
+        {"id": "secao_1", "type": "Seção", "properties": {"identificador": "S001"}},
+        {"id": "livro_1", "type": "Livro", "properties": {"isbn": "123-456-789"}}
     ],
     "relationships": [
-        {"source": "propriedade_1", "target": "lote_1", "type": "POSSUI"},
-        {"source": "lote_1", "target": "animal_1", "type": "CONTEM"}
+        {"source": "biblioteca_1", "target": "secao_1", "type": "POSSUI"},
+        {"source": "secao_1", "target": "livro_1", "type": "CONTEM"}
     ]
 }
 ```
@@ -202,32 +202,32 @@ def create_indices(graph):
 
 ## Casos de Uso Avançados
 
-### Rastreabilidade do Rebanho
+### Rastreabilidade de Empréstimos
 
 ```python
-def criar_rastreabilidade(graph, animal_id):
+def criar_rastreabilidade(graph, livro_id):
     """
-    Cria um subgrafo de rastreabilidade para um animal específico
+    Cria um subgrafo de rastreabilidade para um livro específico
     """
     query = f"""
-    MATCH (a:Animal {{id: '{animal_id}'}})-[r*]-(n)
-    RETURN a, r, n
+    MATCH (l:Livro {{id: '{livro_id}'}})-[r*]-(n)
+    RETURN l, r, n
     """
     return graph.query(GraphCypherQuery(query=query))
 ```
 
-### Análise de Parentesco
+### Análise de Autoria
 
 ```python
-def analisar_parentesco(graph, animal_id):
+def analisar_autoria(graph, livro_id):
     """
-    Analisa relações de parentesco para melhoramento genético
+    Analisa relações de autoria e co-autoria
     """
     query = f"""
-    MATCH (a:Animal {{id: '{animal_id}'}})
-    OPTIONAL MATCH (a)-[:FILHO_DE]->(p:Animal)
-    OPTIONAL MATCH (a)<-[:FILHO_DE]-(f:Animal)
-    RETURN a, p, f
+    MATCH (l:Livro {{id: '{livro_id}'}})
+    OPTIONAL MATCH (l)-[:ESCRITO_POR]->(a:Autor)
+    OPTIONAL MATCH (a)-[:COLABOROU_COM]-(c:Autor)
+    RETURN l, a, c
     """
     return graph.query(GraphCypherQuery(query=query))
 ```

@@ -2,7 +2,7 @@
 
 ## Introdução
 
-No capítulo anterior, exploramos os fundamentos teóricos do RAG (Retrieval-Augmented Generation). Agora, vamos colocar a mão na massa e implementar um sistema RAG completo do zero. Vamos usar como exemplo prático um assistente virtual para gestão pecuária que pode responder perguntas baseadas em documentos técnicos, relatórios e histórico de manejo.
+No capítulo anterior, exploramos os fundamentos teóricos do RAG (Retrieval-Augmented Generation). Agora, vamos colocar a mão na massa e implementar um sistema RAG completo do zero. Vamos usar como exemplo prático um assistente virtual para programação que pode responder perguntas baseadas em documentos técnicos, relatórios e histórico de manejo.
 
 ## Preparando o Ambiente
 
@@ -217,8 +217,7 @@ def main():
     
     # Exemplo de uso
     pergunta = """
-    Qual é o protocolo recomendado de vacinação 
-    para bezerros Nelore recém-nascidos?
+    Quando criarmos uma classe quais são as melhores práticas do clean code ?
     """
     
     resposta = rag.query(pergunta)

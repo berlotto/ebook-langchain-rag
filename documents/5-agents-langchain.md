@@ -117,9 +117,9 @@ graph LR
 from langchain.tools import BaseTool
 from typing import Optional
 
-class FerramentaAgro(BaseTool):
-    name = "calculadora_agro"
-    description = "Calcula métricas importantes para o agronegócio"
+class FerramentaAgil(BaseTool):
+    name = "calculadora_agil"
+    description = "Calcula métricas importantes para uma equipe ágil"
 
     def _run(self, query: str) -> str:
         # Implemente sua lógica aqui
@@ -144,9 +144,9 @@ Este é o padrão mais comum, onde o agent:
 ```python
 # Exemplo de uso do ReAct
 result = agent.run("""
-    1. Calcule o custo de ração para 100 cabeças de gado
-    2. Considere consumo médio de 10kg/dia
-    3. Preço da ração: R$2/kg
+    1. Calcule a previsão de trouhgput da equipe para os proximos 5 meses
+    2. Considere a quantidade de entrega historica da equipe, por pessoa, nos ultimos 12 meses
+    3. Somente para atividades de inovação
 """)
 ```
 
@@ -197,7 +197,7 @@ agent = initialize_agent(
 )
 ```
 
-## Casos de Uso no Agronegócio
+## Casos de Uso
 
 Vamos explorar alguns exemplos práticos:
 
@@ -207,15 +207,21 @@ Vamos explorar alguns exemplos práticos:
 # Definindo ferramentas específicas
 tools = [
     Tool(
-        name="clima",
-        func=consultar_clima,
-        description="Consulta previsão do tempo"
+        name="entregas_historicas",
+        func=consultar_fechamentos,
+        description="Consulta quantidade de issues fechadas ao longo do tempo"
     ),
     Tool(
-        name="nutricao",
-        func=calcular_racao,
-        description="Calcula necessidades nutricionais"
+        name="entragas_por_dev",
+        func=consultar_entrega_por_dev,
+        description="Consulta dados de entrega por desenvolvedor"
+    ),
+    Tool(
+        name="previsao",
+        func=calcular_troughtput,
+        description="Faz a previsão da quantidad de entregas possiveis para o futuro"
     )
+
 ]
 
 # Inicializando agent especializado
