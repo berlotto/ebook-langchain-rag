@@ -325,6 +325,43 @@ class MistuneMarkdownConverter:
                 content: "▪" !important;
             }}
 
+            /* Estilos para tabelas */
+            table {{
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+            }}
+            
+            th, td {{
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }}
+            
+            th {{
+                background-color: #f2f2f2;
+                font-weight: bold;
+            }}
+            
+            tr:nth-child(even) {{
+                background-color: #f9f9f9;
+            }}
+            
+            tr:hover {{
+                background-color: #f1f1f1;
+            }}
+            
+            /* Estilos para tabelas no sumário */
+            nav table {{
+                width: 100%;
+                border-collapse: collapse;
+            }}
+            
+            nav table td {{
+                vertical-align: bottom;
+                padding: 4px 0;
+            }}
+
             {pygments_css}
         ''', font_config=font_config)
 
@@ -380,4 +417,3 @@ class MistuneMarkdownConverter:
 
         # Remove o arquivo temporário
         os.remove(temp_pdf)
-        
